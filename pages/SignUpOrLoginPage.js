@@ -1,3 +1,5 @@
+const { expect } = require('@playwright/test');
+
 class SignUpOrLoginPage{
 
     constructor(page){
@@ -32,6 +34,9 @@ class SignUpOrLoginPage{
         this.loginEmail = page.locator("//input[@data-qa='login-email']");
         this.loginPassword = page.locator("//input[@data-qa='login-password']");
         this.loginButton = page.locator("//button[@data-qa='login-button']");
+        this.incorrectLoginMessage = page.locator("//p[text()='Your email or password is incorrect!']");
+        this.logoutButton = page.locator("//a[@href='/logout']");
+        this.eamilAlreadyexists = page.locator("//p[text()='Email Address already exist!']");
     }
 
     async signupCredentials(name, email){
@@ -105,5 +110,19 @@ class SignUpOrLoginPage{
        }
     }
 
+    async verifyIncorrectLoginPassword(){
+        await expect(this.incorrectLoginMessage).toBeVisible();
+        console.log("Your email or password is incorrect! message is verified");
+    }
+
+    async clickLogoutButton(){
+        await this.logoutButton.click();
+        console.log("Logged out successfully");
+    }
+
+    async verifyEmailalreadyExistsMessage(){
+        await expect(this.eamilAlreadyexists).toBeVisible();
+        console.log("Email Address already exist! message is visible");
+    }
 }
 module.exports = SignUpOrLoginPage;
