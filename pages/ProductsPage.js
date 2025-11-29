@@ -15,6 +15,9 @@ class ProductsPage{
         this.searchProduct = page.locator("#search_product");
         this.submitButton = page.locator("#submit_search");
         this.menTshirt = page.locator("//p[text()='Men Tshirt']");
+        this.productImgae = page.locator("//img[@src='/static/images/home/logo.png']");
+        this.productAddToCartButton = page.locator("//a[@data-product-id='1']");
+        this.continueShopping = page.locator("//button[@class='btn btn-success close-modal btn-block']");
     }
 
     async verifyProductsPage(){
@@ -54,6 +57,31 @@ class ProductsPage{
     async verifySearchedProduct(){
         await expect(this.menTshirt.first()).toBeVisible();
         console.log("Searched product is visible");
+    }
+
+    getAddToCartButton(productId) {
+        return this.page.locator(`//a[@data-product-id='${productId}']`);
+    }
+
+    getProductPicture(productId){
+        return this.page.locator(`//img[@src='/get_product_picture/${productId}']`);
+    }
+
+    getProductInCart(productId){
+        return this.page.locator(`//a[@href='/product_details/${productId}']`);
+    }
+
+
+    async addToCart(productId){
+        await this.getProductPicture(productId).hover();
+        await this.getAddToCartButton(productId).first().click();
+        await this.continueShopping.click();
+    }
+
+
+    async verifyCart(productId){
+        await expect(this.getProductInCart(productId)).toBeVisible();
+        console.log(`Cart is verified for prodcut ID '${productId}'`);
     }
 }
 module.exports = ProductsPage;

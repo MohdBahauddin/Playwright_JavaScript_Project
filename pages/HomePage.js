@@ -11,6 +11,7 @@ class HomePage{
         this.sucscriptionEmail = page.locator("#susbscribe_email");
         this.subscriptionButton = page.locator("#subscribe");
         this.subscriptionSuccessfullMessage = page.getByText("You have been successfully subscribed!");
+        this.cartButton = page.locator("//a[@href='/view_cart']");
     }
 
     async navigate(){
@@ -53,6 +54,12 @@ class HomePage{
         await expect(this.subscriptionSuccessfullMessage).toBeVisible();
         console.log("You have been successfully subscribed! message is visible");
     }
+
+    async clickCartButton(){
+        await this.cartButton.first().click();
+    }
+
+    
     
 }
 
