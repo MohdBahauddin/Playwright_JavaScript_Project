@@ -52,13 +52,32 @@ This framework automates real end-to-end test scenarios from AutomationExercise.
         (Actively extending test coverage)
         
  ✔ Implemented Test Cases:
-        TC01 — Verify Home Page
-        TC02 — Signup User
-        TC03 — Login User with incorrect credentials
-        TC04 — Logout user
-        TC05 — Register user using existing email
-        TC06 — Contact Us Form with file upload + alert handling
-        (More coming soon...)
+        1️⃣ Test Case 1: Register User
+        2️⃣ Test Case 2: Login User with correct email and password
+        3️⃣ Test Case 3: Login User with incorrect email and password
+        4️⃣ Test Case 4: Logout User
+        5️⃣ Test Case 5: Register User with existing email
+        6️⃣ Test Case 6: Contact Us Form
+        7️⃣ Test Case 7: Verify Test Cases Page
+        8️⃣ Test Case 8: Verify All Products and product detail page
+        9️⃣ Test Case 9: Search Product
+        🔟 Test Case 10: Verify Subscription in home page
+        1️⃣1️⃣ Test Case 11: Verify Subscription in Cart page
+        1️⃣2️⃣ Test Case 12: Add Products in Cart
+        1️⃣3️⃣ Test Case 13: Verify Product quantity in Cart
+        1️⃣4️⃣ Test Case 14: Place Order: Register while Checkout
+        1️⃣5️⃣ Test Case 15: Place Order: Register before Checkout
+        1️⃣6️⃣ Test Case 16: Place Order: Login before Checkout
+        1️⃣7️⃣ Test Case 17: Remove Products From Cart
+        1️⃣8️⃣ Test Case 18: View Category Products
+        1️⃣9️⃣ Test Case 19: View & Cart Brand Products
+        2️⃣0️⃣ Test Case 20: Search Products and Verify Cart After Login
+        2️⃣1️⃣ Test Case 21: Add review on product
+        2️⃣2️⃣ Test Case 22: Add to cart from Recommended items
+        2️⃣3️⃣ Test Case 23: Verify address details in checkout page
+        2️⃣4️⃣ Test Case 24: Download Invoice after purchase order
+        2️⃣5️⃣ Test Case 25: Verify Scroll Up using Arrow button and Scroll Down functionality
+        2️⃣6️⃣ Test Case 26: Verify Scroll Up without Arrow button and Scroll Down functionality
 
 🛠️ Installation & Setup:
       1️⃣ Clone the repository:
