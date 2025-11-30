@@ -4,7 +4,7 @@ class HomePage{
 
         this.page = page;
 
-        this.signUpLoginButton = page.locator("a[href='/login']");
+        this.signUpLoginButton = page.getByRole('link', { name: 'Signup / Login' })
         this.testCasesButton = page.locator("//a[@href='/test_cases']");
         this.productsButton = page.locator("//a[@href='/products']");
         this.subscriptionText = page.locator("//h2[text()='Subscription']");
@@ -12,6 +12,10 @@ class HomePage{
         this.subscriptionButton = page.locator("#subscribe");
         this.subscriptionSuccessfullMessage = page.getByText("You have been successfully subscribed!");
         this.cartButton = page.locator("//a[@href='/view_cart']");
+        this.deleteAccountButton = page.locator("//a[@href='/delete_account']");
+        this.accountDeletedText = page.locator("//b[text()='Account Deleted!']");
+        this.category = page.getByText("Category");
+        this.topProducts = page.getByText("Women - Dress Products");
     }
 
     async navigate(){
@@ -59,8 +63,41 @@ class HomePage{
         await this.cartButton.first().click();
     }
 
+    async deleteAccount(){
+        await this.deleteAccountButton.click();
+    }
+
+    async verifyDeleteAccount(){
+        await expect(this.accountDeletedText).toBeVisible();
+        console.log("Account deleted successfully!");
+    }
+
+    async verifyCategory(){
+        await expect(this.category).toBeVisible();
+        console.log("Category is visible");
+    }
     
-    
+    getCategory(category){
+        return this.page.locator(`//a[@href='#${category}']`);
+    }
+
+    async clickCategory(category){
+        await this.getCategory(category).click();
+    }
+
+    getSubCategory(subCategory){
+        return this.page.locator(`//a[@href='/category_products/${subCategory}']`);
+    }
+
+    async clickSubCategory(subCategory){
+        await this.getSubCategory(subCategory).click();
+    }
+
+    async VerifyCategoryPage(){
+        await expect(this.topProducts).toBeVisible();
+        console.log("WOMEN - TOPS PRODUCTS are visible");
+    }
+
 }
 
 module.exports = HomePage; 

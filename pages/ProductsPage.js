@@ -18,6 +18,9 @@ class ProductsPage{
         this.productImgae = page.locator("//img[@src='/static/images/home/logo.png']");
         this.productAddToCartButton = page.locator("//a[@data-product-id='1']");
         this.continueShopping = page.locator("//button[@class='btn btn-success close-modal btn-block']");
+        this.productQuantity = page.locator("#quantity");
+        this.addToCartButtton = page.locator("//button[@class='btn btn-default cart']");
+        this.cartQuantity = page.locator("//button[text()='4']");
     }
 
     async verifyProductsPage(){
@@ -82,6 +85,18 @@ class ProductsPage{
     async verifyCart(productId){
         await expect(this.getProductInCart(productId)).toBeVisible();
         console.log(`Cart is verified for prodcut ID '${productId}'`);
+    }
+
+    async increaseProductQuantity(){
+        await this.productQuantity.fill("");
+        await this.productQuantity.fill("4");
+        await this.addToCartButtton.click();
+        await this.continueShopping.click()
+    }
+
+    async verifyCartQuantity(){
+        await expect(this.cartQuantity).toBeVisible();
+        console.log("Cart Quantity is verified");
     }
 }
 module.exports = ProductsPage;

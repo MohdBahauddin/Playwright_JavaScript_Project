@@ -12,6 +12,7 @@ class SignUpOrLoginPage{
         this.genderMale = page.locator("#id_gender1");
         this.password = page.locator("#password");
         this.days = page.locator("#days");
+        this.continueButton = page.locator("//a[text()='Continue']");
         this.months = page.locator("#months");
         this.years = page.locator("#years");
         this.newsletter = page.locator("#newsletter");
@@ -73,6 +74,10 @@ class SignUpOrLoginPage{
         await this.mobile.fill(mobileNumber);
 
         await this.createAccountBtn.click();
+    }
+
+    async clickContinueButton(){
+        await this.continueButton.click();
     }
 
     async verifyAccountCreated() {
