@@ -21,6 +21,14 @@ class ProductsPage{
         this.productQuantity = page.locator("#quantity");
         this.addToCartButtton = page.locator("//button[@class='btn btn-default cart']");
         this.cartQuantity = page.locator("//button[text()='4']");
+        this.brands = page.getByText("Brands");
+        this.allProducts = page.getByText("Searched Products");
+        this.reviewName = page.locator("#name");
+        this.reviewEmail = page.locator("#email");
+        this.reviewText = page.locator("#review");
+        this.reviewMessage = page.getByText("Thank you for your review.");
+        this.submitReviewButton = page.locator("#button-review");
+
     }
 
     async verifyProductsPage(){
@@ -54,6 +62,11 @@ class ProductsPage{
 
     async searchProducts(){
         await this.searchProduct.fill("Men Tshirt");
+        await this.submitButton.click();
+    }
+
+    async searchProducts1(productName){
+        await this.searchProduct.fill(productName);
         await this.submitButton.click();
     }
 
@@ -97,6 +110,47 @@ class ProductsPage{
     async verifyCartQuantity(){
         await expect(this.cartQuantity).toBeVisible();
         console.log("Cart Quantity is verified");
+    }
+
+    async verifyBrandIsVisible(){
+        await expect(this.brands).toHaveText("Brands");
+        console.log("Brands is is visible");
+    }
+
+    getBrandName(brandName){
+        return this.page.locator(`//a[@href='/brand_products/${brandName}']`);
+    }
+
+    async clickBrandName(brandName){
+        await this.getBrandName(brandName).click();
+    }
+
+    getBrandProductName(name){
+        return this.page.getByText(`Brand - ${name} Products`)
+    }
+
+    async verifyBrandProductName(name){
+        await expect(this.getBrandProductName(name)).toHaveText(`Brand - ${name} Products`);
+        console.log(`Brand - ${name} Products is verified`);
+    }
+
+    async verifyAllProductsIsVisible(){
+        await expect(this.allProducts).toBeVisible();
+        console.log("Searched Products are visible");
+    }
+
+    async fillProductReview(name, email, review){
+        
+        await this.reviewName.fill(name);
+        await this.reviewEmail.fill(email);
+        await this.reviewText.fill(review);
+        await this.submitReviewButton.click();
+    }
+
+    async verifyReviewMessage(){
+        await expect(this.reviewMessage).toBeVisible();
+        console.log("Thank you for your review. message is visible");
+
     }
 }
 module.exports = ProductsPage;

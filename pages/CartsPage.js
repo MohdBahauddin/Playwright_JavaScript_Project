@@ -46,5 +46,27 @@ class CartsPaga{
         await expect(this.emptyCartText).toBeVisible();
         console.log("Cart is empty!");
     }
+
+    getProductIds(productId){
+        return this.page.locator(`//a[@href='/product_details/${productId}']`);
+    }
+
+    async verifyAllProductsInCart(){
+        const productIds = [2,28,29,30,31,43];
+
+        for(const id of productIds){
+            await expect(this.getProductIds(id)).toBeVisible();
+            console.log(`Product Id ${id} is visible`);
+        }
+    }
+
+    async verifyAllProductsInCart1(){
+        const productIds = [4,5,6,1,2,3];
+
+        for(const id of productIds){
+            await expect(this.getProductIds(id)).toBeVisible();
+            console.log(`Product Id ${id} is visible`);
+        }
+    }
 }
 module.exports = CartsPaga;

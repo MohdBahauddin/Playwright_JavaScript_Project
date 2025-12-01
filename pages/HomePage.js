@@ -16,6 +16,11 @@ class HomePage{
         this.accountDeletedText = page.locator("//b[text()='Account Deleted!']");
         this.category = page.getByText("Category");
         this.topProducts = page.getByText("Women - Dress Products");
+        this.continueButton = page.getByText("Continue Shopping");
+        this.rightArrow = page.locator("//i[@class='fa fa-angle-right']");
+        this.upArrow = page.locator("//i[@class='fa fa-angle-up']");
+        this.fullFledgeText = page.getByText("Full-Fledged practice website for Automation Engineers");
+        
     }
 
     async navigate(){
@@ -32,7 +37,7 @@ class HomePage{
 
     async verifyHomePageIsVisible(){
         const str = await this.page.title();
-        if(str == "Automation Exercise - Signup / Login"){
+        if(str == "Automation Exercise"){
             console.log("Homepage is verified");
         }
         else{
@@ -96,6 +101,41 @@ class HomePage{
     async VerifyCategoryPage(){
         await expect(this.topProducts).toBeVisible();
         console.log("WOMEN - TOPS PRODUCTS are visible");
+    }
+
+    getrecommendedProduct(productId){
+        return this.page.locator(`//div[@id='recommended-item-carousel']//a[@data-product-id='${productId}']`);
+    }
+
+    async addRecommendedProductToCart(){
+        const productIds = [4,5,6];
+        const productIds1 = [1,2,3];
+        for(const id of productIds)
+        {
+            await this.getrecommendedProduct(id).first().click();
+            await this.continueButton.click();
+        }  
+        
+        await this.rightArrow.last().click();
+
+        for(const id of productIds1)
+        {
+            await this.getrecommendedProduct(id).first().click();
+            await this.continueButton.click();
+        }   
+    }
+
+    async clickUpArrow(){
+        await this.upArrow.click();
+    }
+
+    async verifyFullFledgeText(){
+        await expect(this.fullFledgeText.first()).toBeVisible();
+        console.log("Full-Fledged practice website for Automation Engineers is visible");
+    }
+
+    async scrollPage() {
+        await this.page.mouse.wheel(0, 500);
     }
 
 }
