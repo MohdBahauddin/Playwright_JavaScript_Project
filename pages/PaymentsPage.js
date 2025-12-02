@@ -12,6 +12,7 @@ class PaymentsPage{
         this.payButton = page.locator("//button[@data-qa='pay-button']");
         this.orderConfirmedText = page.locator("//p[text()='Congratulations! Your order has been confirmed!']");
         this.successMessage = page.getByText("Your order has been placed successfully!");
+        this.downloadInvoice = page.locator("//a[@href='/download_invoice/500']")
     }
 
     async fillPaymentDetails(name, number, cvc, month, year){
@@ -26,6 +27,10 @@ class PaymentsPage{
     async verifyOrderPlaced(){
         await expect(this.orderConfirmedText).toBeVisible();
         console.log("Congratulations! Your order has been confirmed!");
+    }
+
+    async clickDownloadInvoice(){
+        await this.downloadInvoice.click();
     }
     
 }

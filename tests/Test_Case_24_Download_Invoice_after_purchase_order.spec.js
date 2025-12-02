@@ -36,8 +36,9 @@ test("Test Case 24: Download Invoice after purchase order", async ({page}) => {
     await cart.verifyAddressDetails();
     await cart.fillDescription();
 
-     await pay.fillPaymentDetails("John Wick", "1234567890123459", "123", "10", "2030");
+    await pay.fillPaymentDetails("John Wick", "1234567890123459", "123", "10", "2030");
     await pay.verifyOrderPlaced();
+    await pay.clickDownloadInvoice();
 
     await home.deleteAccount();
     await home.verifyDeleteAccount();
