@@ -39,7 +39,7 @@ test("API 12: DELETE To Delete User Account", async ({ request }) => {
     const body = await response.json();
     console.log(body);
 
-    //
+    //Assirtion
     expect(body.responseCode).toBe(200);
     expect(body.message).toContain("Account deleted!");
 });
