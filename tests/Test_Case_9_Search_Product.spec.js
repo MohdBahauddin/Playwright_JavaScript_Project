@@ -17,5 +17,5 @@ test("Test Case 9: Search Product", async({page}) => {
     await product.searchProducts();
     await product.verifySearchedProduct();
 
-    //123
+    //12
 });

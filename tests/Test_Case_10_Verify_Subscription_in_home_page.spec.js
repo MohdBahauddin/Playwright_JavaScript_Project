@@ -11,4 +11,6 @@ test("Test Case 10: Verify Subscription in home page", async ({page}) => {
     await home.fillSusbcriptionEmail("johnvicks58@gmail.com");
     await home.verifySubscriptionMessage();
 
+
+    
 });
