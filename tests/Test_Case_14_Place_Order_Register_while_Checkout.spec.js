@@ -46,6 +46,4 @@ test("Test Case 14: Place Order: Register while Checkout",async ({page}) => {
     await home.deleteAccount();
     await home.verifyDeleteAccount();
 
-    await home.deleteAccount();
-    await home.verifyDeleteAccount();
 });

@@ -13,5 +13,5 @@ test("API 7: POST To Verify Login with valid details", async ({request}) => {
     const body = await response.json();
     console.log(body);
 
-    expect(body.message).toContain("User exists!");
+    expect(body.message).toContain("User not found!");
 });

@@ -7,6 +7,7 @@ test("API 1: Get All Products List", async ({request}) =>{
     expect(response.status()).toBe(200);
 
     const body = await response.json();
+    console.log(body);
     expect(body).toHaveProperty("products");
     expect(body.products.length).toBeGreaterThan(0);
 
